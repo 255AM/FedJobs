@@ -74,3 +74,4 @@ C:\Users\Lanecw\workspace\fedjobs\fedjobs\obj\Debug\net5.0\fedjobs.dll
 C:\Users\Lanecw\workspace\fedjobs\fedjobs\obj\Debug\net5.0\ref\fedjobs.dll
 C:\Users\Lanecw\workspace\fedjobs\fedjobs\obj\Debug\net5.0\fedjobs.pdb
 C:\Users\Lanecw\workspace\fedjobs\fedjobs\obj\Debug\net5.0\fedjobs.genruntimeconfig.cache
+C:\Users\Lanecw\workspace\fedjobs\fedjobs\bin\Debug\net5.0\fedjobs\obj\project.assets.json
