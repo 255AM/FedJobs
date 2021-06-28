@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-namespace Tabloid.Models
+namespace fedjobs.Models
 {
     public class UserProfile
     {

@@ -1,0 +1,7 @@
+C:\Users\Lanecw\workspace\fedjobs\fedjobs\fedjobs\obj\Debug\net5.0\fedjobs.csproj.AssemblyReference.cache
+C:\Users\Lanecw\workspace\fedjobs\fedjobs\fedjobs\obj\Debug\net5.0\fedjobs.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Lanecw\workspace\fedjobs\fedjobs\fedjobs\obj\Debug\net5.0\fedjobs.AssemblyInfoInputs.cache
+C:\Users\Lanecw\workspace\fedjobs\fedjobs\fedjobs\obj\Debug\net5.0\fedjobs.AssemblyInfo.cs
+C:\Users\Lanecw\workspace\fedjobs\fedjobs\fedjobs\obj\Debug\net5.0\fedjobs.csproj.CoreCompileInputs.cache
+C:\Users\Lanecw\workspace\fedjobs\fedjobs\fedjobs\obj\Debug\net5.0\fedjobs.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Lanecw\workspace\fedjobs\fedjobs\fedjobs\obj\Debug\net5.0\fedjobs.MvcApplicationPartsAssemblyInfo.cache
