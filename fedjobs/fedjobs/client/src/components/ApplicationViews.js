@@ -34,6 +34,12 @@ export default function ApplicationViews() {
         <Route path="/register">
           <Register />
         </Route>
+
+        {/*----------------Job Routes----------------- */}
+        <Route path="/">
+          <Register />
+        </Route>
+
       </Switch>
     </main>
   );
