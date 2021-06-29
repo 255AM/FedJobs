@@ -1,8 +1,0 @@
-{
-  "runtimeOptions": {
-    "additionalProbingPaths": [
-      "C:\\Users\\Lanecw\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\Lanecw\\.nuget\\packages"
-    ]
-  }
-}
