@@ -9,7 +9,7 @@ import {
   NavItem,
   NavLink
 } from 'reactstrap';
-import { UserProfileContext } from "../Providers/UserProfileProvider";
+import { UserProfileContext } from "../providers/UserProfileProvider";
 
 export default function Header() {
   // import the isLoggedIn state variable and logout function from

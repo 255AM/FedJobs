@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
-import { UserProfileContext } from "../Providers/UserProfileProvider";
+import { UserProfileContext } from "../providers/UserProfileProvider";
 
 
 import Login from "./Login"; 
@@ -24,9 +24,6 @@ export default function ApplicationViews() {
         <Route path="/" exact>
           {isLoggedIn ? <Hello /> : <Redirect to="/login" />}
         </Route>
-        
-        
-
         {/*----------------Authentication Routes----------------- */}
         {/* Define the Login path as "/login". */}
         <Route path="/login">

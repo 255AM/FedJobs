@@ -46,10 +46,10 @@ export function UserProfileProvider(props) {
   };
 
   const getToken = () => firebase.auth().currentUser.getIdToken();
-
+  //https://localhost:5001/api/userprofile
   const getUserProfile = (firebaseUserId) => {
     return getToken().then((token) =>
-      fetch(`${apiUrl}/${firebaseUserId}`, {
+      fetch(`https://localhost:5001/api/userprofile/${firebaseUserId}`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`
