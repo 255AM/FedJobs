@@ -17,10 +17,10 @@ namespace fedjobs.Repositories
                 {
                     cmd.CommandText = @"
                         SELECT up.Id, Up.FirebaseUserId, up.FirstName, up.LastName, up.DisplayName, 
-                               up.Email, up.CreateDateTime, up.ImageLocation, up.UserTypeId,
-                               ut.Name AS UserTypeName
+                               up.Email, up.CreateDateTime
+                               
                           FROM UserProfile up
-                               LEFT JOIN UserType ut on up.UserTypeId = ut.Id
+                               
                          WHERE FirebaseUserId = @FirebaseuserId";
 
                     DbUtils.AddParameter(cmd, "@FirebaseUserId", firebaseUserId);
