@@ -3,6 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import firebase from "firebase/app";
+
+// Define a global variable with a key value pair of the firebase App's API key
+const firebaseConfig = {
+  apiKey: process.env.REACT_APP_API_KEY,
+};
+// Initialize the firebase configuration
+firebase.initializeApp(firebaseConfig);
 
 ReactDOM.render(
   <React.StrictMode>
