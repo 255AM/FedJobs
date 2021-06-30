@@ -8,7 +8,8 @@ export default function Go() {
   const history = useHistory();
   const {getJobs}  = useContext(JobDataContext);
 
-  
+  const [keyword, setKeyword] = useState();
+  const [location, setLocation] = useState();
 
   const searchSubmit = (e) => {
     e.preventDefault();
@@ -17,24 +18,5 @@ export default function Go() {
   };
 
 
-  return (
-    <Form onSubmit={searchSubmit}>
-      <fieldset>
-        <FormGroup>
-          <Label for="email">Email</Label>
-          {/* <Input id="email" type="text" onChange={e => setEmail(e.target.value)} /> */}
-        </FormGroup>
-        <FormGroup>
-          <Label for="password">Password</Label>
-          {/* <Input id="password" type="password" onChange={e => setPassword(e.target.value)} /> */}
-        </FormGroup>
-        <FormGroup>
-          <Button>Login</Button>
-        </FormGroup>
-        <em>
-          Not registered? <Link to="register">Register</Link>
-        </em>
-      </fieldset>
-    </Form>
-  );
+  return (null);
 }

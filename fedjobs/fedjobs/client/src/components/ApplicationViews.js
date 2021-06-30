@@ -2,6 +2,9 @@ import React, { useContext } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { UserProfileContext } from "../providers/UserProfileProvider";
 
+import {JobList} from "./Job/JobList";
+
+
 
 import Login from "./Login"; 
 import Register from "./Register";
@@ -22,7 +25,7 @@ export default function ApplicationViews() {
         manage what the user sees based on their login status. If they are logged in,
         display a welcome message. If not, redirect them to the login page*/}
         <Route path="/" exact>
-          {isLoggedIn ? <Hello /> : <Redirect to="/login" />}
+          {isLoggedIn ? <JobList /> : <Redirect to="/login" />}
         </Route>
         {/*----------------Authentication Routes----------------- */}
         {/* Define the Login path as "/login". */}
@@ -38,6 +41,11 @@ export default function ApplicationViews() {
         {/*----------------Job Routes----------------- */}
         <Route path="/">
           <Register />
+        </Route>
+
+        {/*-----------------POST ROUTES--------------------*/}
+        <Route exact path="/jobs">
+          {isLoggedIn ? <JobList /> : <Redirect to="/login" />}
         </Route>
 
       </Switch>

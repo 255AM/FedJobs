@@ -28,7 +28,7 @@ export default function Header() {
   return (
     <div>
       <Navbar color="light" light expand="md">
-        <NavbarBrand tag={RRNavLink} to="/">Tabloid</NavbarBrand>
+        <NavbarBrand tag={RRNavLink} to="/">FedJobs</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
@@ -38,7 +38,7 @@ export default function Header() {
                 <NavItem>
                   <NavLink tag={RRNavLink} to="/" onClick={toggle}>Home</NavLink>
                 </NavItem>
-                <NavItem>
+                {/* <NavItem>
                   <NavLink tag={RRNavLink} to="/post" onClick={toggle}>Posts</NavLink>
                 </NavItem>
                 <NavItem>
@@ -49,10 +49,10 @@ export default function Header() {
                 </NavItem>
                 <NavItem>
                   <NavLink tag={RRNavLink} to="/tags" onClick={toggle}>Tag Management</NavLink>
-                </NavItem>
-                <NavItem>
+                </NavItem> */}
+                {/* <NavItem>
                   <NavLink tag={RRNavLink} to="/categories" onClick={toggle}>Category Management</NavLink>
-                </NavItem>
+                </NavItem> */}
                 
               </>
             }

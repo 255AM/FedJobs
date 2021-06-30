@@ -1,17 +1,18 @@
-import React, { useState, useEffect, createContext } from "react";
+import React, { useState, useEffect, useContext, createContext } from "react";
 import { Spinner } from "reactstrap";
 import firebase from "firebase/app";
 import "firebase/auth";
 import { useHistory } from "react-router-dom";
 
-export const JobDataContext = createContext();
+export const JobDataContext = React.createContext();
 
 export function JobsDataProvider(props) {
+  const [ jobStore, setJobStore ] = useState({});
   
 
-const getJobs = (userAgent, authKey) =>{
+const getJobs = (keyword , location) =>{
     var myHeaders = new Headers();
-    myHeaders.append("Authorization-Key", "fdsa");
+    myHeaders.append("Authorization-Key", "m/hQgdmgYzTjdcP5IkS8Pbda87BgWCr3OpHsyIhiyR0=");
     myHeaders.append("User-Agent", "lanecw@gmail.com");
     
     var requestOptions = {
@@ -20,10 +21,33 @@ const getJobs = (userAgent, authKey) =>{
       redirect: 'follow'
     };
     
-    fetch("https://data.usajobs.gov/api/search?", requestOptions)
+    fetch("https://data.usajobs.gov/api/search?RemunerationMinimumAmount=250000", requestOptions)
       .then(response => response.json())
-      .then(result => console.log(result))
-      
+      .then(resp => {
+        // SearchResult.SearchResultItems[1].MatchedObjectDescriptor.PositionID
+        console.log(resp.SearchResult.SearchResultItems[1].MatchedObjectDescriptor.PositionID);
+        setJobStore([
+          {
+            jobId:resp.SearchResult.SearchResultItems[1].MatchedObjectDescriptor.PositionID,
+            title:resp.SearchResult.SearchResultItems[1].MatchedObjectDescriptor.PositionTitle,
+            link:resp.SearchResult.SearchResultItems[1].MatchedObjectDescriptor.PositionURI,
+            apply:resp.SearchResult.SearchResultItems[1].MatchedObjectDescriptor.ApplyURI[0],
+            //may need to index
+            location:resp.SearchResult.SearchResultItems[1].MatchedObjectDescriptor.PositionLocation,
+            //telework not easily extrapolated from api|html scraper?
+            telework:resp.SearchResult.SearchResultItems[1].MatchedObjectDescriptor.PositionID,
+            organization:resp.SearchResult.SearchResultItems[1].MatchedObjectDescriptor.OrganizationName,
+            department:resp.SearchResult.SearchResultItems[1].MatchedObjectDescriptor.DepartmentName,
+            jobCategory:resp.SearchResult.SearchResultItems[1].MatchedObjectDescriptor.JobCategory,
+            schedule:resp.SearchResult.SearchResultItems[1].MatchedObjectDescriptor.PositionSchedule[0].Name ,
+            requirements:resp.SearchResult.SearchResultItems[1].MatchedObjectDescriptor.QualificationSummary,
+            duties:resp.SearchResult.SearchResultItems[1].MatchedObjectDescriptor.UserArea.Details.MajorDuties,
+            openDate:resp.SearchResult.SearchResultItems[1].MatchedObjectDescriptor.PublicationStartDate,
+            closeDate:resp.SearchResult.SearchResultItems[1].MatchedObjectDescriptor.ApplicationCloseDate,
+            education:resp.SearchResult.SearchResultItems[1].MatchedObjectDescriptor.UserArea.Details.Education,
+          }
+      ])
+      })
       .catch(error => console.log('error', error));
 }
 
@@ -86,7 +110,7 @@ const getJobs = (userAgent, authKey) =>{
 // };
 
   return (
-    <JobDataContext.Provider value={{ getJobs}}>
+    <JobDataContext.Provider value={{ getJobs, jobStore}}>
       {props.children
        }
         
