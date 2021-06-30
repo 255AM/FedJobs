@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { NavLink as RRNavLink } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import {
   Collapse,
   Navbar,
