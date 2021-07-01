@@ -1,27 +1,35 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { Card, CardBody } from "reactstrap";
+import { Card, CardBody, CardHeader } from "reactstrap";
 import Button from "reactstrap/lib/Button";
 
 
-export const Job = ({ job }) => {
+export const Job = ({colorScheme, jobProp}) => {
+  console.log("color scheme", colorScheme)
+  console.log("jobProp", jobProp)
   
-
+// console.log(job+'hrere');
   const history = useHistory();
     
   return (
-    <Card className="m-4">
+    
+    <Card className="m-8">
+      <CardHeader>
+        <strong>{jobProp.MatchedObjectDescriptor.PositionTitle}</strong>
+      </CardHeader>
       <CardBody>
-        <strong>{job.name}</strong>
+      <p className="text-left px-2">Location: {jobProp.MatchedObjectDescriptor.PositionLocation[0].CityName}</p>
+      <p className="text-left px-2">Organization: {jobProp.MatchedObjectDescriptor.OrganizationName}</p>
+      <p className="text-left px-2">Department: {jobProp.MatchedObjectDescriptor.DepartmentName}</p>
+
       </CardBody>
-      // if categoryId doesnt exist in post, draw delete button */
-       {/* {category.isUsed?
-      " "
-      :
-      <Button onClick={() => {history.push(`/categories/delete/${category.id}`)}}>Delete</Button> 
-} */}
-    </Card>
+      
+        
+      
+      
+      </Card>
   );
 }
 //modify api 
-//boolean on category model
+//boolean on category model``
+

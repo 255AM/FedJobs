@@ -5,18 +5,17 @@ import { useHistory, Link } from "react-router-dom";
 import { JobDataContext } from "../providers/JobsDataProvider";
 
 export default function SearchBar() {
-  const history = useHistory();
+  
   const {getJobs}  = useContext(JobDataContext);
-
-  const [jobStore, setJobStore] = useState();
   const [keyword, setKeyword] = useState();
   const [location, setLocation] = useState();
 
   const submitSearch = (e) => {
     e.preventDefault();
-    
+    if (!keyword && !location){
+      console.log('nonnonno');
+    }
     getJobs(keyword, location)
-      
   };
 
   

@@ -5,68 +5,52 @@ import { JobDataContext } from "../../providers/JobsDataProvider";
 import Button from "reactstrap/lib/Button";
 
 export const JobList=() => {
-  const history = useHistory();
-  const { jobStore } = useContext(JobDataContext);
   
-
+  const { jobs, getJobs } = useContext(JobDataContext);
   
-
-  useEffect(() => {
-    console.log('chngesd!')
-    
-  }, [jobStore])
 
   return (
-    <div className="container">
-
-      {/* <div><Button onClick={() => history.push("/jobs/add")}>Create Category</Button></div>*/}
-      <div className="row justify-content-center"> 
-        
-        <div className="cards-column">
-            {/* {// sorting categories alphabetically
-            // categories.sort((a, b) => a.name.localeCompare(b.name))
-            //map through all categories in database 
-            jobStore.map((job) => (
-            <Job key={job.id}job={job} />
-            ))} */}
-        </div>
-      </div>
-    </div>
-
-  );
-}
-
-
-
-// //AnimalList is exported and called at appviews when route is /animals. 
-// export const AnimalList = () => {
-//     //Bringing these in at AnimalContext.Provider on the provider file
-//   const { animals, getAnimals, searchTerms, filterTerms } = useContext(AnimalContext)
+    <>
+      
+      {jobs.map((job) => { 
   
+         console.log("this is my single job in a loop", job)
 
-//   // Since you are no longer ALWAYS displaying all of the animals
-//   // set filteredAnimals to state as empty array
-//   const [ filteredAnimals, setFiltered ] = useState([])
-//   const [ filteredSpecies, setFilteredSpecies ] = useState([])
-//   //use history to change route as needed
-//   const history = useHistory()
+        return(
+            <Job 
+              key={job.id}
+              colorScheme={"blue"}
+              jobProp={job}
+            />
+        )
+      })}
+      
+      
+    </>   
 
-//   // Empty dependency array - useEffect only runs after first render, will not run the 2nd time because of the empty dependancy array
-//   useEffect(() => {
-//       getAnimals()
-//   }, [])
 
-//   // useEffect dependency array with dependencies - will run if dependency changes (state)
-//   // searchTerms will cause a change
-//   useEffect(() => {
-//     if (searchTerms !== "0") {
-//       // If the search field is not blank, display matching animals
-//       //subset is array of animals with matchign chars (all forced to lower case)
-//       const subset = animals.filter(animal => animal.name.toLowerCase().includes(searchTerms))
-//       //calling setFiltered with subset as argument. Changes state, useEffect will run each time because of dependancy (constantly monitoring??)
-//       setFiltered(subset)
-//     } else {
-//       // If the search field is blank, display all animals
-//       setFiltered(animals)
-//     }
-//   }, [searchTerms, animals])
+)
+
+    }
+
+
+
+
+
+// jobId=job.SearchResult.SearchResultItems[1].MatchedObjectDescriptor.PositionID,
+      // title=job.SearchResult.SearchResultItems[1].MatchedObjectDescriptor.PositionTitle,
+      // link=job.SearchResult.SearchResultItems[1].MatchedObjectDescriptor.PositionURI,
+      // apply=job.SearchResult.SearchResultItems[1].MatchedObjectDescriptor.ApplyURI[0],
+      // //may need to index
+      // location=job.SearchResult.SearchResultItems[1].MatchedObjectDescriptor.PositionLocation,
+      // //telework not easily extrapolated from api|html scraper?
+      // telework=job.SearchResult.SearchResultItems[1].MatchedObjectDescriptor.PositionID,
+      // organization=job.SearchResult.SearchResultItems[1].MatchedObjectDescriptor.OrganizationName,
+      // department=job.SearchResult.SearchResultItems[1].MatchedObjectDescriptor.DepartmentName,
+      // jobCategory=job.SearchResult.SearchResultItems[1].MatchedObjectDescriptor.JobCategory,
+      // schedule=job.SearchResult.SearchResultItems[1].MatchedObjectDescriptor.PositionSchedule[0].Name ,
+      // requirements=job.SearchResult.SearchResultItems[1].MatchedObjectDescriptor.QualificationSummary,
+      // duties=job.SearchResult.SearchResultItems[1].MatchedObjectDescriptor.UserArea.Details.MajorDuties,
+      // openDate=job.SearchResult.SearchResultItems[1].MatchedObjectDescriptor.PublicationStartDate,
+      // closeDate=job.SearchResult.SearchResultItems[1].MatchedObjectDescriptor.ApplicationCloseDate,
+      // education=job.SearchResult.SearchResultItems[1].MatchedObjectDescriptor.UserArea.Details.Education
