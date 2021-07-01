@@ -1,29 +1,33 @@
-import React, { useState, useEffect, createContext } from "react";
+import React, { useState, useEffect, useContext, createContext } from "react";
 import { Spinner } from "reactstrap";
 import firebase from "firebase/app";
 import "firebase/auth";
 import { useHistory } from "react-router-dom";
 
-export const JobDataContext = createContext();
+export const JobDataContext = React.createContext();
 
 export function JobsDataProvider(props) {
+  const [ jobs, setJobs ] = useState([]);
   
 
-const getJobs = (userAgent, authKey) =>{
-    var myHeaders = new Headers();
-    myHeaders.append("Authorization-Key", "fdsa");
-    myHeaders.append("User-Agent", "lanecw@gmail.com");
-    
-    var requestOptions = {
-      method: 'GET',
-      headers: myHeaders,
-      redirect: 'follow'
-    };
-    
-    fetch("https://data.usajobs.gov/api/search?", requestOptions)
-      .then(response => response.json())
-      .then(result => console.log(result))
+  const getJobs = (keyword, location) =>{
+      var myHeaders = new Headers();
+      myHeaders.append("Authorization-Key", "m/hQgdmgYzTjdcP5IkS8Pbda87BgWCr3OpHsyIhiyR0=");
+      myHeaders.append("User-Agent", "lanecw@gmail.com");
       
+      var requestOptions = {
+        method: 'GET',
+        headers: myHeaders,
+        redirect: 'follow'
+      };
+    
+    fetch(`https://data.usajobs.gov/api/search?Keyword=${keyword}&LocationName=${location}`, requestOptions)
+      .then(response => response.json())
+      .then(resp => {
+        console.log(resp)
+        // SearchResult.SearchResultItems[1].MatchedObjectDescriptor.PositionID
+        setJobs(resp.SearchResult.SearchResultItems)
+      })
       .catch(error => console.log('error', error));
 }
 
@@ -86,7 +90,7 @@ const getJobs = (userAgent, authKey) =>{
 // };
 
   return (
-    <JobDataContext.Provider value={{ getJobs}}>
+    <JobDataContext.Provider value={{ getJobs, jobs}}>
       {props.children
        }
         
