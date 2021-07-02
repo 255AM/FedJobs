@@ -30,6 +30,7 @@ namespace fedjobs
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<IUserProfileRepository, UserProfileRepository>();
+            services.AddTransient<IJobRepository, JobRepository>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

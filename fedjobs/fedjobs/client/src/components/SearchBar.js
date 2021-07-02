@@ -23,10 +23,6 @@ export default function SearchBar() {
     
   };
 
-  
-
-
-
 return (
     <Form onSubmit={(!keyword || keyword === ' ') && (!location || location === ' ') ?
     console.log('Please select a Keyword or location to search'):

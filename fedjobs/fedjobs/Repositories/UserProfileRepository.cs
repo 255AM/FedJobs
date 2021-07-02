@@ -17,7 +17,7 @@ namespace fedjobs.Repositories
                 {
                     cmd.CommandText = @"
                         SELECT up.Id, Up.FirebaseUserId, up.FirstName, up.LastName, up.DisplayName, 
-                               up.Email, up.CreateDateTime
+                               up.Email
                                
                           FROM UserProfile up
                                
@@ -38,7 +38,7 @@ namespace fedjobs.Repositories
                             LastName = DbUtils.GetString(reader, "LastName"),
                             DisplayName = DbUtils.GetString(reader, "DisplayName"),
                             Email = DbUtils.GetString(reader, "Email"),
-                            CreateDateTime = DbUtils.GetDateTime(reader, "CreateDateTime"),
+                            
                             
                         };
                     }
