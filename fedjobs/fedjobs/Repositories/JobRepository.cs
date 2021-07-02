@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
 using fedjobs.Models;
 using Microsoft.Extensions.Configuration;
 
@@ -63,6 +65,60 @@ namespace fedjobs.Repositories
 
                     // return the list of posts
                     return jobs;
+                }
+            }
+        }
+
+        public void Add(Job job)
+        {
+            // Define a variable to identify the database connection
+            // ("Connection" comes from the BaseRepository.cs)
+            using (var conn = Connection)
+            {
+                // Open the connection to the database.
+                conn.Open();
+                // Instantiate a variable called cmd to use as short-hand for defining the SQL query.
+                using (var cmd = conn.CreateCommand())
+                {
+                    // Define the SQL query. Select Post, Category, UserProfile, and UserType.
+                    // Join Category on Post via CategoryId
+                    // Join UserProfile on Post via UserProfileId
+                    // Join UserType on UserProfile via UserTypeId
+                    // Only Select Entries WHERE the UserId = the current user's Id
+                    // Order by descending (chronological) 
+                    cmd.CommandText = @"
+                            INSERT INTO JOB (
+                                UserId, JobId, Link, 
+                              Location,
+                              Organization, Department, Category,
+                              Schedule, Requirements,
+                              Duties, DateOpened, DateClose,Education)
+                        
+                        VALUES (@UserId, @JobId, @Link, 
+                              @Location,
+                              @Organization, @Department, @Category,
+                              @Schedule, @Requirements,
+                              @Duties, @DateOpened, @DateClose, @Education)";
+
+                    // Attach the UserId parameter to the SQL Query using SQLConnection provided methods
+                    cmd.Parameters.AddWithValue("1", job.UserId);
+                    cmd.Parameters.AddWithValue("@JobId", job.JobId);
+                    cmd.Parameters.AddWithValue("@Link", job.Link);
+                    cmd.Parameters.AddWithValue("@Organization", job.Organization);
+                    cmd.Parameters.AddWithValue("@Location", job.Location);
+                    cmd.Parameters.AddWithValue("@Department", job.Department);
+                    cmd.Parameters.AddWithValue("@Category", job.Category);
+                    cmd.Parameters.AddWithValue("@Schedule", job.Schedule);
+                    cmd.Parameters.AddWithValue("@Requirements", job.Requirements);
+                    cmd.Parameters.AddWithValue("@Duties", job.Duties);
+                    cmd.Parameters.AddWithValue("@DateOpened", job.DateOpened);
+                    cmd.Parameters.AddWithValue("@DateClose", job.DateClose);
+                    cmd.Parameters.AddWithValue("@Education", job.Education);
+
+                    
+
+
+                    
                 }
             }
         }

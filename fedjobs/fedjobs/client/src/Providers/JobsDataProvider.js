@@ -31,6 +31,20 @@ export function JobsDataProvider(props) {
       .catch(error => console.log('error', error));
 }
 
+const addJob = (job) => {
+  // savejob to users save list
+  //return getToken().then((token) =>
+    fetch("/api/Job", {
+          method: "POST",
+          headers: {
+              //Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json"
+          },
+          body: JSON.stringify(job)
+        })
+        .then(resp => resp.json())
+};
+
 //   const login = (email, pw) => {
 //     return firebase.auth().signInWithEmailAndPassword(email, pw)
 //       .then((signInResponse) => { 
@@ -90,7 +104,7 @@ export function JobsDataProvider(props) {
 // };
 
   return (
-    <JobDataContext.Provider value={{ getJobs, jobs}}>
+    <JobDataContext.Provider value={{ getJobs, jobs, addJob}}>
       {props.children
        }
         

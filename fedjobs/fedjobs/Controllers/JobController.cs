@@ -33,7 +33,7 @@ namespace fedjobs.Controllers
             return new string[] { "value1", "value2" };
         }
 
-        [HttpGet("MyJobss/{UserId}")]
+        [HttpGet("MyJobs/{UserId}")]
         public IActionResult MyJobs(int UserId)
         {
             // Use the "GetPostsByUserId" method in the PostRepository.cs
@@ -52,11 +52,13 @@ namespace fedjobs.Controllers
             return "value";
         }
 
-        // POST api/<JobController>
-        
-        //public void Post([FromBody] string value)
-        //{
-        //}
+        //POST api/<jobcontroller>
+        [HttpPost]
+        public IActionResult Job(Job job)
+        {
+            _jobRepository.Add(job);
+            return Ok(job);
+        }
 
         //// PUT api/<JobController>/5
         //[HttpPut("{id}")]
