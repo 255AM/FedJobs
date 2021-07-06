@@ -10,6 +10,8 @@ export const JobDetails = () => {
     let x
     let {jobId} = useParams();
 
+    const loggedInUserId = JSON.parse(sessionStorage.getItem("userProfile")).id;
+
     const { jobs, getJobs } = useContext(JobDataContext);
     const { addJob  } = useContext(JobDataContext);
 
@@ -23,7 +25,7 @@ export const JobDetails = () => {
 
     const saveJob = (x) =>{
         addJob({
-            
+
             Title: x.MatchedObjectDescriptor.PositionTitle,
             Link:x.MatchedObjectDescriptor.PositionURI,
             Location: x.MatchedObjectDescriptor.PositionLocationDisplay,
@@ -37,7 +39,8 @@ export const JobDetails = () => {
             Duties:x.MatchedObjectDescriptor.UserArea.Details.MajorDuties[0],
             DateOpened:x.MatchedObjectDescriptor.PublicationStartDate,
             DateClose:x.MatchedObjectDescriptor.ApplicationCloseDate,
-            Education:x.MatchedObjectDescriptor.UserArea.Details.Education
+            Education:x.MatchedObjectDescriptor.UserArea.Details.Education,
+            userId: loggedInUserId
 
 
             

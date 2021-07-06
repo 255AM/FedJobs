@@ -32,7 +32,7 @@ namespace fedjobs.Repositories
                     // Join UserType on UserProfile via UserTypeId
                     // Only Select Entries WHERE the UserId = the current user's Id
                     // Order by descending (chronological) 
-                    cmd.CommandText = @"SELECT j.Id, j.JobId, j.Title, j.Link, 
+                    cmd.CommandText = @"SELECT j.Id, j.UserId, j.JobId, j.Title, j.Link, 
                               j.Location,
                               j.Organization, j.Department, j.Category,
                               j.Schedule, j.Requirements,
@@ -94,7 +94,7 @@ namespace fedjobs.Repositories
                               Schedule, Requirements,
                               Duties, DateOpened, DateClose,Education)
                         
-                        VALUES (1, @JobId, @Title, @Link, 
+                        VALUES (@UserId, @JobId, @Title, @Link, 
                               @Location,
                               @Organization, @Department, @Category,
                               @Schedule, @Requirements,
@@ -128,8 +128,9 @@ namespace fedjobs.Repositories
         private Job NewJobFromReader(SqlDataReader reader)
         {
             return new Job()
-            {
+            {   
                 Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                UserId = reader.GetInt32(reader.GetOrdinal("UserId")),
                 JobId = reader.GetString(reader.GetOrdinal("JobId")),
                 Title = reader.GetString(reader.GetOrdinal("Title")),
                 Link = reader.GetString(reader.GetOrdinal("Link")),
