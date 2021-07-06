@@ -32,7 +32,7 @@ namespace fedjobs.Repositories
                     // Join UserType on UserProfile via UserTypeId
                     // Only Select Entries WHERE the UserId = the current user's Id
                     // Order by descending (chronological) 
-                    cmd.CommandText = @"SELECT j.Id, j.JobId, j.Link, 
+                    cmd.CommandText = @"SELECT j.Id, j.JobId, j.Title, j.Link, 
                               j.Location,
                               j.Organization, j.Department, j.Category,
                               j.Schedule, j.Requirements,
@@ -88,21 +88,22 @@ namespace fedjobs.Repositories
                     // Order by descending (chronological) 
                     cmd.CommandText = @"
                             INSERT INTO JOB (
-                                UserId, JobId, Link, 
+                                UserId, JobId, Title, Link, 
                               Location,
                               Organization, Department, Category,
                               Schedule, Requirements,
                               Duties, DateOpened, DateClose,Education)
                         
-                        VALUES (@UserId, @JobId, @Link, 
+                        VALUES (1, @JobId, @Title, @Link, 
                               @Location,
                               @Organization, @Department, @Category,
                               @Schedule, @Requirements,
                               @Duties, @DateOpened, @DateClose, @Education)";
 
                     // Attach the UserId parameter to the SQL Query using SQLConnection provided methods
-                    cmd.Parameters.AddWithValue("1", job.UserId);
+                    cmd.Parameters.AddWithValue("@UserId", job.UserId);
                     cmd.Parameters.AddWithValue("@JobId", job.JobId);
+                    cmd.Parameters.AddWithValue("@Title", job.Title);
                     cmd.Parameters.AddWithValue("@Link", job.Link);
                     cmd.Parameters.AddWithValue("@Organization", job.Organization);
                     cmd.Parameters.AddWithValue("@Location", job.Location);
@@ -115,10 +116,11 @@ namespace fedjobs.Repositories
                     cmd.Parameters.AddWithValue("@DateClose", job.DateClose);
                     cmd.Parameters.AddWithValue("@Education", job.Education);
 
-                    
 
+                    //job.Id = (int)cmd.ExecuteScalar();
 
-                    
+                    cmd.ExecuteNonQuery();
+
                 }
             }
         }
@@ -129,6 +131,7 @@ namespace fedjobs.Repositories
             {
                 Id = reader.GetInt32(reader.GetOrdinal("Id")),
                 JobId = reader.GetString(reader.GetOrdinal("JobId")),
+                Title = reader.GetString(reader.GetOrdinal("Title")),
                 Link = reader.GetString(reader.GetOrdinal("Link")),
                 Organization = reader.GetString(reader.GetOrdinal("Organization")),
                 Department = reader.GetString(reader.GetOrdinal("Department")),

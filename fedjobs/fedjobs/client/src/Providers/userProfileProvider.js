@@ -8,6 +8,8 @@ import { useHistory } from "react-router-dom";
 export const UserProfileContext = createContext();
 
 export function UserProfileProvider(props) {
+
+  
   const apiUrl = "/api/userprofile";
   const history = useHistory()
   const userProfile = sessionStorage.getItem("userProfile");

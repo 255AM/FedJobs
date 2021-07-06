@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { UserProfileContext } from "../providers/UserProfileProvider";
-
+import { UserJobDetails } from "./Job/UserJobDetails";
 import {JobList} from "./Job/JobList";
 import {JobDetails} from "./Job/JobDetails"
+import { MyJobs } from "./Job/MyJobs"
 
 
 
@@ -41,6 +42,12 @@ export default function ApplicationViews() {
         </Route>
 
         {/*----------------Job Routes----------------- */}
+        <Route path="/myjobs" exact>
+          {isLoggedIn ? <MyJobs /> : <Redirect to="/login" />}
+        </Route>
+        <Route path="/myjobs/details/:jobId(\d+)" exact>
+          {isLoggedIn ? <UserJobDetails /> : <Redirect to="/login" />}
+        </Route>
         <Route exact path="/jobs">
           {isLoggedIn ? <JobList /> : <Redirect to="/login" />}
         </Route>
