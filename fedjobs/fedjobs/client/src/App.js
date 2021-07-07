@@ -4,7 +4,9 @@ import { UserProfileProvider } from "./providers/UserProfileProvider";
 import { JobsDataProvider} from "./providers/JobsDataProvider";
 import Header from "./components/Header";
 import ApplicationViews from "./components/ApplicationViews";
-import SearchBar from "./components/SearchBar";
+
+import { JobList } from './components/Job/JobList';
+
 
 
 
@@ -15,10 +17,10 @@ function App() {
     <Router>
       <UserProfileProvider>
         <JobsDataProvider>
-        
+          
                 <Header />
-                <SearchBar />
                 <ApplicationViews />
+                
         </JobsDataProvider>     
       </UserProfileProvider>
     </Router>

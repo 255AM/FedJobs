@@ -1,0 +1,17 @@
+*{
+    display: flex;
+}
+.card-header{
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    background-color: brown!;
+    
+}
+
+.fav{
+    align-items: flex-end;
+    justify-content: space-between;
+    align-self: flex-end ;
+
+}

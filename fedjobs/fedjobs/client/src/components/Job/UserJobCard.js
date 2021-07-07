@@ -7,7 +7,7 @@ import { JobDetails } from "./JobDetails";
 import { Link } from "react-router-dom";
 
 
-export const Job = ({colorScheme, jobProp}) => {
+export const UserJobCard = ({colorScheme, jobProp}) => {
   console.log("color scheme", colorScheme)
   console.log("jobProp", jobProp)
   
@@ -21,23 +21,22 @@ export const Job = ({colorScheme, jobProp}) => {
     <Card className="m-8">
       <CardHeader class='card-header'>
       
-      
-          <Link to={`/jobs/details/${jobProp.MatchedObjectId}`}>
+		      <Link to={`/myjobs/details/${jobProp.id}`}>
             <strong>
-              {jobProp.MatchedObjectDescriptor.PositionTitle}
+              {jobProp.title}
             </strong>
           </Link> 
-          
+          <div>
+            <FaRegStar class='fav unselected' fontSize="2em"/>
+          </div>
          
       </CardHeader>
 
       <CardBody>
-        <p className="text-left px-2"><strong>Locations: </strong>{jobProp.MatchedObjectDescriptor.PositionLocation.map((location)=><li>{location.LocationName}</li>)}</p>
-        <p className="text-left px-2"><strong>Organization:<br></br>  
-                    </strong> {jobProp.MatchedObjectDescriptor.OrganizationName}</p>
-        <p className="text-left px-2"><strong>Department:<br></br> </strong>{jobProp.MatchedObjectDescriptor.DepartmentName}</p>
-        {/* <FaStar />
-        <FaRegStar /> */}
+        <p className="text-left px-2">Location: {jobProp.location}</p>
+        <p className="text-left px-2">Organization: {jobProp.organization} </p>
+        <p className="text-left px-2">Department: {jobProp.department}</p>
+       
       </CardBody>
       
     </Card>
@@ -46,4 +45,6 @@ export const Job = ({colorScheme, jobProp}) => {
 }
 //modify api 
 //boolean on category model``
+
+
 

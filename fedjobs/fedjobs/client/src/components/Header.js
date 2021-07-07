@@ -40,14 +40,14 @@ export default function Header() {
                 </NavItem>
                 {/* <NavItem>
                   <NavLink tag={RRNavLink} to="/post" onClick={toggle}>Posts</NavLink>
-                </NavItem>
+                </NavItem> */}
                 <NavItem>
-                  <NavLink tag={RRNavLink} to="/myposts" onClick={toggle}>My Posts</NavLink>
+                  <NavLink tag={RRNavLink} to="/myjobs" onClick={toggle}>My Jobs</NavLink>
                 </NavItem>
-                <NavItem>
+                {/* <NavItem>
                   <NavLink tag={RRNavLink} to="/post/add" onClick={toggle}>New Post</NavLink>
-                </NavItem>
-                <NavItem>
+                </NavItem> */}
+                {/* <NavItem>
                   <NavLink tag={RRNavLink} to="/tags" onClick={toggle}>Tag Management</NavLink>
                 </NavItem> */}
                 {/* <NavItem>

@@ -1,14 +1,17 @@
 import React, { useContext } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { UserProfileContext } from "../providers/UserProfileProvider";
-
+import { UserJobDetails } from "./Job/UserJobDetails";
 import {JobList} from "./Job/JobList";
+import {JobDetails} from "./Job/JobDetails"
+import { MyJobs } from "./Job/MyJobs"
 
 
 
 import Login from "./Login"; 
 import Register from "./Register";
 import Hello from "./Hello";
+import SearchBar from "./SearchBar";
 
 
 
@@ -24,8 +27,8 @@ export default function ApplicationViews() {
         {/* Define the Home path as "/". Use the isLoggedIn state variable to 
         manage what the user sees based on their login status. If they are logged in,
         display a welcome message. If not, redirect them to the login page*/}
-        <Route path="/" exact>
-          {isLoggedIn ? <JobList /> : <Redirect to="/login" />}
+        <Route exact path="/">
+          {isLoggedIn ? < SearchBar />  : <Redirect to="/login" />}
         </Route>
         {/*----------------Authentication Routes----------------- */}
         {/* Define the Login path as "/login". */}
@@ -39,14 +42,29 @@ export default function ApplicationViews() {
         </Route>
 
         {/*----------------Job Routes----------------- */}
-        <Route path="/">
-          <Register />
+        <Route path="/myjobs" exact>
+          {isLoggedIn ? <MyJobs /> : <Redirect to="/login" />}
         </Route>
-
-        {/*-----------------POST ROUTES--------------------*/}
+        <Route path="/myjobs/details/:jobId(\d+)" exact>
+          {isLoggedIn ? <UserJobDetails /> : <Redirect to="/login" />}
+        </Route>
         <Route exact path="/jobs">
           {isLoggedIn ? <JobList /> : <Redirect to="/login" />}
         </Route>
+
+        <Route path="/jobs/details/:jobId(\d+)">
+          {isLoggedIn ? 
+          
+            <JobDetails /> 
+            : 
+            <Redirect to="/login" />}
+        </Route>
+          
+        
+
+        {/*-----------------POST ROUTES--------------------*/}
+        
+        
 
       </Switch>
     </main>

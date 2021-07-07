@@ -6,7 +6,7 @@ import Button from "reactstrap/lib/Button";
 
 export const JobList=() => {
   
-  const { jobs, getJobs } = useContext(JobDataContext);
+  const { jobs} = useContext(JobDataContext);
   
 
   return (
@@ -33,24 +33,3 @@ export const JobList=() => {
 
     }
 
-
-
-
-
-// jobId=job.SearchResult.SearchResultItems[1].MatchedObjectDescriptor.PositionID,
-      // title=job.SearchResult.SearchResultItems[1].MatchedObjectDescriptor.PositionTitle,
-      // link=job.SearchResult.SearchResultItems[1].MatchedObjectDescriptor.PositionURI,
-      // apply=job.SearchResult.SearchResultItems[1].MatchedObjectDescriptor.ApplyURI[0],
-      // //may need to index
-      // location=job.SearchResult.SearchResultItems[1].MatchedObjectDescriptor.PositionLocation,
-      // //telework not easily extrapolated from api|html scraper?
-      // telework=job.SearchResult.SearchResultItems[1].MatchedObjectDescriptor.PositionID,
-      // organization=job.SearchResult.SearchResultItems[1].MatchedObjectDescriptor.OrganizationName,
-      // department=job.SearchResult.SearchResultItems[1].MatchedObjectDescriptor.DepartmentName,
-      // jobCategory=job.SearchResult.SearchResultItems[1].MatchedObjectDescriptor.JobCategory,
-      // schedule=job.SearchResult.SearchResultItems[1].MatchedObjectDescriptor.PositionSchedule[0].Name ,
-      // requirements=job.SearchResult.SearchResultItems[1].MatchedObjectDescriptor.QualificationSummary,
-      // duties=job.SearchResult.SearchResultItems[1].MatchedObjectDescriptor.UserArea.Details.MajorDuties,
-      // openDate=job.SearchResult.SearchResultItems[1].MatchedObjectDescriptor.PublicationStartDate,
-      // closeDate=job.SearchResult.SearchResultItems[1].MatchedObjectDescriptor.ApplicationCloseDate,
-      // education=job.SearchResult.SearchResultItems[1].MatchedObjectDescriptor.UserArea.Details.Education
