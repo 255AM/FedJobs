@@ -21,21 +21,21 @@ export const Job = ({colorScheme, jobProp}) => {
     <Card className="m-8">
       <CardHeader class='card-header'>
       
-		      <Link to={`/jobs/details/${jobProp.MatchedObjectId}`}>
+      
+          <Link to={`/jobs/details/${jobProp.MatchedObjectId}`}>
             <strong>
               {jobProp.MatchedObjectDescriptor.PositionTitle}
             </strong>
           </Link> 
-          <div>
-            <FaRegStar class='fav unselected' fontSize="2em"/>
-          </div>
+          
          
       </CardHeader>
 
       <CardBody>
-        <p className="text-left px-2">Location: {jobProp.MatchedObjectDescriptor.PositionLocation[0].CityName}</p>
-        <p className="text-left px-2">Organization: {jobProp.MatchedObjectDescriptor.OrganizationName} FaStar</p>
-        <p className="text-left px-2">Department: {jobProp.MatchedObjectDescriptor.DepartmentName}FaRegStar</p>
+        <p className="text-left px-2"><strong>Locations: </strong>{jobProp.MatchedObjectDescriptor.PositionLocation.map((location)=><li>{location.LocationName}</li>)}</p>
+        <p className="text-left px-2"><strong>Organization:<br></br>  
+                    </strong> {jobProp.MatchedObjectDescriptor.OrganizationName}</p>
+        <p className="text-left px-2"><strong>Department:<br></br> </strong>{jobProp.MatchedObjectDescriptor.DepartmentName}</p>
         {/* <FaStar />
         <FaRegStar /> */}
       </CardBody>

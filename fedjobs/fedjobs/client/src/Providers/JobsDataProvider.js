@@ -30,8 +30,8 @@ export function JobsDataProvider(props) {
       .then(response => response.json())
       .then(resp => {
         console.log(resp)
-        // SearchResult.SearchResultItems[1].MatchedObjectDescriptor.PositionID
         setJobs(resp.SearchResult.SearchResultItems)
+        
       })
       .catch(error => console.log('error', error));
 }

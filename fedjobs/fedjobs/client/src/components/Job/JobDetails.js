@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { JobDataContext, JobsDataProvider } from "../../providers/JobsDataProvider";
-import {useParams} from "react-router-dom"
+import {useParams, Link} from "react-router-dom"
 import { Card, CardImg, CardBody, CardHeader, Button, Badge } from "reactstrap";
 import { FaStar,FaRegStar } from 'react-icons/fa';
 
@@ -9,6 +9,7 @@ import { FaStar,FaRegStar } from 'react-icons/fa';
 export const JobDetails = () => {
     let x
     let {jobId} = useParams();
+    let locations
 
     const loggedInUserId = JSON.parse(sessionStorage.getItem("userProfile")).id;
 
@@ -56,7 +57,7 @@ export const JobDetails = () => {
         <>
             {}
             <Card className="m-8">
-                <CardHeader>{x?.MatchedObjectDescriptor.PositionTitle}</CardHeader>
+                <CardHeader>
                 <div>
                     <FaRegStar onClick={() => {
                         saveJob(x)
@@ -64,17 +65,31 @@ export const JobDetails = () => {
                     }}
                         class='fav unselected' fontSize="2em"/>
                 </div>
-                <CardHeader>{x?.MatchedObjectDescriptor.PositionURI}</CardHeader>
-                <CardHeader>{x?.MatchedObjectDescriptor.PositionLocationDisplay}</CardHeader>
-                <CardHeader>{x?.MatchedObjectDescriptor.OrganizationName}</CardHeader>
-                <CardHeader>{x?.MatchedObjectDescriptor.DepartmentName}</CardHeader>
-                <CardHeader>{x?.MatchedObjectDescriptor.QualificationSummary}</CardHeader>
+                <div>
+                    <strong>
+                        {x?.MatchedObjectDescriptor.PositionTitle}
+                    </strong> 
+                </div>
+                
+                </CardHeader>
+                
+                <CardHeader>
+                    <div>
+                        <Link to={{pathname: x?.MatchedObjectDescriptor.PositionURI}}target = "_blank">Link to Official Listing</Link>
+                    </div>
+                </CardHeader>
+                
+                <CardHeader><strong>Locations: </strong>{x?.MatchedObjectDescriptor.PositionLocation.map((location)=><li>{location.LocationName}</li>)}</CardHeader>
+                <CardHeader><strong>Organization:<br></br>  
+                    </strong> {x?.MatchedObjectDescriptor.OrganizationName}</CardHeader>
+                <CardHeader><strong>Department:<br></br> </strong>{x?.MatchedObjectDescriptor.DepartmentName}</CardHeader>
+                <CardHeader><strong>Responsibilities:</strong><br></br> {x?.MatchedObjectDescriptor.UserArea.Details.MajorDuties}</CardHeader>
             </Card>
         </>
+
+
     )
 }
 
 
 
-  
-  
